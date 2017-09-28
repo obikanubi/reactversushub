@@ -18,7 +18,7 @@ class App extends Component {
 
     var username;
 
-    if (player_number === 1) {
+    if (player_number == 1) {
       username = this.player1Input.value
     } else {
       username = this.player2Input.value
@@ -26,13 +26,15 @@ class App extends Component {
 
     fetch(`https://api.github.com/users/${username}`)
       .then((response) => response.json())
-      .then((response) => { this.setState({ player1: response })
+      .then((response) => {
+        if (player_number == 1) {
+          this.setState({ player1: response })
+        } else {
+          this.setState({ player2: response })
+        }
       }).catch((error) => console.log(error))
   }
 
-  handleInputChange() {
-    console.log()
-  }
    render() {
     return (
       <div>
@@ -41,6 +43,7 @@ class App extends Component {
           player1={this.state.player1}
           player2={this.state.player2}
         />
+
         <Row>
           <Col s={12} m={6}>
             <Input ref={(input) => {this.player1Input = input;}}/>
@@ -50,7 +53,7 @@ class App extends Component {
           <Col s={12} m={6}>
             <Input ref={(input) => {this.player2Input = input;}}/>
             <Button waves='light' onClick={() => this.lookupPlayer(2)}>Lookup</Button>
-            <PlayerProfile player_data={this.state.player1}/>
+            <PlayerProfile player_data={this.state.player2}/>
           </Col>
         </Row>
       </div>
