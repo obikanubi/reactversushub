@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import PlayerProfile from './components/playerprofile';
 import Judging from './components/judging';
-import {Row, Col, Button, Input } from 'react-materialize';
+import {Row, Col, Button } from 'react-materialize';
 
 class App extends Component {
   constructor(props) {
@@ -46,12 +46,12 @@ class App extends Component {
 
         <Row>
           <Col s={12} m={6}>
-            <Input ref={(input) => {this.player1Input = input;}}/>
+            <input ref={(input) => {this.player1Input = input;}}/>
             <Button waves='light' onClick={() => this.lookupPlayer(1)}>Lookup</Button>
             <PlayerProfile player_data={this.state.player1}/>
           </Col>
           <Col s={12} m={6}>
-            <Input ref={(input) => {this.player2Input = input;}}/>
+            <input ref={(input) => {this.player2Input = input;}}/>
             <Button waves='light' onClick={() => this.lookupPlayer(2)}>Lookup</Button>
             <PlayerProfile player_data={this.state.player2}/>
           </Col>
